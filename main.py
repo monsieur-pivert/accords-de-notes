@@ -2,6 +2,7 @@ DuréeNote = 45
 NombreNotesDictée = 2
 IntervalleMaxi = 8
 nombreRépétitionsNotes = 13
+IntervalleMini = 1
 
 NotesPossibles = [
     Note.C4,
@@ -51,7 +52,29 @@ NomsNotesPossibles = [
         "Sol#5",
     ]
 
+Intervalles = [
+    "",
+"Seconde mineure",
+    "Seconde majeure",
+    "Tierce mineure",
+    "Tierce majeure",
+    "Quarte juste",
+#    "Quarte diminuee",
+#    "Quarte augmentee",
+"Quinte diminuee",
+    "Quinte juste",
+    "Quinte augmentee",
+    "Sixte majeure",
+#    "Sixte mineure",
+ "Septième mineure",
+ "Septième majeure",
+     "Octave juste",
+    ]
+
 NotesDictée : List[number] = notesAuHasard(NotesPossibles)
+
+def calculerIntervalle(indexPremièreNote, indexDeuxièmeNote):
+    return Math.abs(indexDeuxièmeNote - indexPremièreNote)
 
 def notesAuHasard(listeNotes):
         notes : List[number] = []
@@ -59,8 +82,8 @@ def notesAuHasard(listeNotes):
         for i in range(NombreNotesDictée):
             while True:
                 indexNote : number = randint(0, NotesPossibles.length - 1)
-                intervalle = Math.abs(indexNote - indexNotePrécédente)
-                if intervalle <= IntervalleMaxi:
+                intervalle = calculerIntervalle(indexNote, indexNotePrécédente)
+                if intervalle <= IntervalleMaxi and intervalle >= IntervalleMini:
                     break
             notes.append(indexNote)
             indexNotePrécédente = indexNote
@@ -69,6 +92,14 @@ def notesAuHasard(listeNotes):
 def afficherDictéeNote() -> void :
         for note in NotesDictée:
             basic.show_string(NomsNotesPossibles[note])
+
+def afficherIntervalle() -> void :
+    indexPremièreNote : number = NotesDictée[0]
+    indexDeuxièmeNote : number = NotesDictée[1]
+    indexIntervalle = calculerIntervalle(indexPremièreNote, indexDeuxièmeNote)
+    i = Intervalles[indexIntervalle]
+    basic.show_string(i)
+
 
 def afficherPremièreNote():
         indexPremièreNote : number = NotesDictée[0]
@@ -87,4 +118,5 @@ def jouerDictéeNote() -> void :
         music.play_tone(deuxièmeNoteAccord, DuréeNote)
 
 input.on_button_pressed(Button.A, jouerDictéeNote)
-input.on_button_pressed(Button.B, afficherDictéeNote)
+input.on_button_pressed(Button.AB, afficherDictéeNote)
+input.on_button_pressed(Button.B, afficherIntervalle)
