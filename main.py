@@ -101,14 +101,15 @@ def afficherIntervalle() -> void :
     basic.show_string(i)
 
 
-def afficherPremièreNote():
-        indexPremièreNote : number = NotesDictée[0]
-        premièreNote : string = NomsNotesPossibles[indexPremièreNote]
-        basic.show_string(premièreNote)
+#def afficherPremièreNote():
+#        indexPremièreNote : number = NotesDictée[0]
+#        premièreNote : string = NomsNotesPossibles[indexPremièreNote]
+#        basic.show_string(premièreNote)
 
 
 def jouerDictéeNote() -> void :
-    afficherPremièreNote()
+    music.play_tone(Note.A, music.beat())
+    basic.pause(150)
     indexPremièreNote : number = NotesDictée[0]
     indexDeuxièmeNote : number = NotesDictée[1]
     premièreNoteAccord = NotesPossibles[indexPremièreNote]

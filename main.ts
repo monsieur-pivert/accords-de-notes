@@ -34,14 +34,13 @@ function notesAuHasard(listeNotes: any): number[] {
     return notes
 }
 
-function afficherPremièreNote() {
-    let indexPremièreNote = NotesDictée[0]
-    let premièreNote = NomsNotesPossibles[indexPremièreNote]
-    basic.showString(premièreNote)
-}
-
+// def afficherPremièreNote():
+//         indexPremièreNote : number = NotesDictée[0]
+//         premièreNote : string = NomsNotesPossibles[indexPremièreNote]
+//         basic.show_string(premièreNote)
 input.onButtonPressed(Button.A, function jouerDictéeNote() {
-    afficherPremièreNote()
+    music.playTone(Note.A, music.beat())
+    basic.pause(150)
     let indexPremièreNote = NotesDictée[0]
     let indexDeuxièmeNote = NotesDictée[1]
     let premièreNoteAccord = NotesPossibles[indexPremièreNote]
