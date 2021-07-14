@@ -1,7 +1,7 @@
 DuréeNote = 45
 NombreNotesDictée = 2
-IntervalleMaxi = 8
-nombreRépétitionsNotes = 13
+IntervalleMaxi = 12
+nombreRépétitionsNotes = 20
 IntervalleMini = 1
 
 NotesPossibles = [
